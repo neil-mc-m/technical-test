@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/patient/{id}/sms', PatientController::class);
+Route::controller(PatientController::class)->group(function () {
+    Route::get('/patient/{id}/sms', 'sendMessage');
+});

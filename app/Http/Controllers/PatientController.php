@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    public function __invoke(Request $request, SmsService $smsService, PatientRepository $patientRepository, int $id): void
-    {
+    public function __construct(private readonly PatientRepository $patientRepository) {}
 
+    public function sendMessage(Request $request, SmsService $smsService, int $id): void
+    {
+        $patient = $this->patientRepository->findById($id);
     }
 }
