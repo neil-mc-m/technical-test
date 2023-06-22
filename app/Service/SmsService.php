@@ -2,12 +2,16 @@
 
 namespace App\Service;
 
-class SmsService
-{
-    public function __construct(private readonly array $config) {}
+use App\Contracts\SmsClientInterface;
 
-    public function send(string $messasge, string $toNumber): bool
+readonly class SmsService
+{
+    public function __construct(private SmsClientInterface $client) {}
+
+    public function send(string $message, string $toNumber): string
     {
-        return $this->config['client']->send($messasge, $toNumber);
+        $this->client->send($message, $toNumber);
+
+        return 'success';
     }
 }
