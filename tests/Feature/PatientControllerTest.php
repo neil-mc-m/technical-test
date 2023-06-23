@@ -10,7 +10,6 @@ use Tests\TestCase;
 class PatientControllerTest extends TestCase
 {
     use RefreshDatabase;
-    use CreatesApplication;
 
     public function test_sends_message_for_patient_success()
     {
