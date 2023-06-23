@@ -5,15 +5,19 @@ namespace App\Http\Client;
 use App\Contracts\SmsClientInterface;
 use Illuminate\Http\JsonResponse;
 
-readonly class MyFakeTwilioClient implements SmsClientInterface
+class MyFakeTwilioClient implements SmsClientInterface
 {
     public function __construct(
         private int    $id,
         private string $token
     ) {}
 
-    public function send($message, $toNumber): string
+    public function send($message, $toNumber): JsonResponse
     {
-        return new JsonResponse(['status' => 'success']);
+        if ($message === 'success') {
+            return new JsonResponse(['status' => 'success']);
+        }
+
+        return new JsonResponse(['status' => 'error', 'error' => 'error message'], 422);
     }
 }

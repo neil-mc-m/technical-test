@@ -19,16 +19,7 @@ class PatientController extends Controller
     {
         $message = $request->post('message');
         $patient = $this->patientRepository->findById($id);
-        if ($message === 'success') {
-            return response()->json([
-                'status' => $this->smsService->send($message, $patient->phone),
-                'patient' => $patient->phone
-            ]);
-        }
 
-        return response()->json([
-            'status' => 'error',
-            'message' => sprintf('patient with phone number %d doesnt exist', $patient->phone)
-        ], 422);
+        return $this->smsService->send($message, $patient->phone);
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Client\MyFakeTwilioClient;
 use App\Service\SmsService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use Twilio\Rest\Client;
 
 class SmsServiceProvider extends ServiceProvider implements DeferrableProvider
 {
